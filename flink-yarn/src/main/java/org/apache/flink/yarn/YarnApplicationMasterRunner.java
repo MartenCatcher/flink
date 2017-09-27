@@ -419,7 +419,7 @@ public class YarnApplicationMasterRunner {
 
 			if (actorSystem != null) {
 				try {
-					actorSystem.shutdown();
+					actorSystem.terminate();
 				} catch (Throwable tt) {
 					LOG.error("Error shutting down actor system", tt);
 				}
@@ -435,7 +435,7 @@ public class YarnApplicationMasterRunner {
 		LOG.info("YARN Application Master started");
 
 		// wait until everything is done
-		actorSystem.awaitTermination();
+		//actorSystem.awaitTermination();
 
 		// if we get here, everything work out jolly all right, and we even exited smoothly
 		if (webMonitor != null) {

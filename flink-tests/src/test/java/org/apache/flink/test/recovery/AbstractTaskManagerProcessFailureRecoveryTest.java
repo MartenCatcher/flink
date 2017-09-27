@@ -264,7 +264,7 @@ public abstract class AbstractTaskManagerProcessFailureRecoveryTest extends Test
 				taskManagerProcess3.destroy();
 			}
 			if (jmActorSystem != null) {
-				jmActorSystem.shutdown();
+				jmActorSystem.terminate();
 			}
 			if (coordinateTempDir != null) {
 				try {

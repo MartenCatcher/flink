@@ -229,8 +229,7 @@ class TestingCluster(
           Await.result(stopped, TestingCluster.MAX_RESTART_DURATION)
 
           if(!singleActorSystem) {
-            jmActorSystems(index).shutdown()
-            jmActorSystems(index).awaitTermination()
+            jmActorSystems(index).terminate()
           }
 
           val newJobManagerActorSystem = if(!singleActorSystem) {
@@ -274,8 +273,7 @@ class TestingCluster(
         Await.result(stopped, TestingCluster.MAX_RESTART_DURATION)
 
         if(!singleActorSystem) {
-          tmActorSystems(index).shutdown()
-          tmActorSystems(index).awaitTermination()
+          tmActorSystems(index).terminate()
         }
 
         val taskManagerActorSystem  = if(!singleActorSystem) {

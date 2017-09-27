@@ -138,11 +138,10 @@ public class TaskManagerMetricsTest extends TestLogger {
 			Assert.assertFalse(tmRegistry.isShutdown());
 
 			// shut down the actors and the actor system
-			actorSystem.shutdown();
-			actorSystem.awaitTermination();
+			actorSystem.terminate();
 		} finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (highAvailabilityServices != null) {

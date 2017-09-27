@@ -68,11 +68,8 @@ public class MessageSerializationTest extends TestLogger {
 		akkaRpcService1.stopService();
 		akkaRpcService2.stopService();
 
-		actorSystem1.shutdown();
-		actorSystem2.shutdown();
-
-		actorSystem1.awaitTermination();
-		actorSystem2.awaitTermination();
+		actorSystem1.terminate();
+		actorSystem2.terminate();
 	}
 
 	/**

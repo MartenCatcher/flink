@@ -192,8 +192,7 @@ public class TaskManagerComponentsStartupShutdownTest extends TestLogger {
 			jobManager.tell(Kill.getInstance(), ActorRef.noSender());
 
 			// shut down the actors and the actor system
-			actorSystem.shutdown();
-			actorSystem.awaitTermination();
+			actorSystem.terminate();
 			actorSystem = null;
 
 			// now that the TaskManager is shut down, the components should be shut down as well
@@ -204,9 +203,7 @@ public class TaskManagerComponentsStartupShutdownTest extends TestLogger {
 			TestingUtils.stopActorsGracefully(Arrays.asList(jobManager, taskManager));
 
 			if (actorSystem != null) {
-				actorSystem.shutdown();
-
-				actorSystem.awaitTermination(TestingUtils.TESTING_TIMEOUT());
+				actorSystem.terminate();
 			}
 
 			highAvailabilityServices.closeAndCleanupAllData();

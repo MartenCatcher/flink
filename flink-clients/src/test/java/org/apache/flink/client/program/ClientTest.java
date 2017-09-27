@@ -114,8 +114,7 @@ public class ClientTest extends TestLogger {
 	public void shutDownActorSystem() {
 		if (jobManagerSystem != null) {
 			try {
-				jobManagerSystem.shutdown();
-				jobManagerSystem.awaitTermination();
+				jobManagerSystem.terminate();
 			} catch (Exception e) {
 				e.printStackTrace();
 				fail(e.getMessage());

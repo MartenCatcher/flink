@@ -218,7 +218,7 @@ public class ProcessFailureCancelingITCase extends TestLogger {
 				taskManagerProcess.destroy();
 			}
 			if (jmActorSystem != null) {
-				jmActorSystem.shutdown();
+				jmActorSystem.terminate();
 			}
 
 			if (highAvailabilityServices != null) {

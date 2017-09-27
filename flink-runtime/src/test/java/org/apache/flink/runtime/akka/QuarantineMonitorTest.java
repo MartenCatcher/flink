@@ -74,8 +74,7 @@ public class QuarantineMonitorTest extends TestLogger {
 	@AfterClass
 	public static void tearDown() {
 		if (actorSystem1 != null) {
-			actorSystem1.shutdown();
-			actorSystem1.awaitTermination();
+			actorSystem1.terminate();
 		}
 	}
 
@@ -87,8 +86,7 @@ public class QuarantineMonitorTest extends TestLogger {
 	@After
 	public void tearDownTest() {
 		if (actorSystem2 != null) {
-			actorSystem2.shutdown();
-			actorSystem2.awaitTermination();
+			actorSystem2.terminate();
 		}
 	}
 

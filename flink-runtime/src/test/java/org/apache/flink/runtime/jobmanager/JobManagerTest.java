@@ -131,7 +131,6 @@ import static org.apache.flink.runtime.testingUtils.TestingJobManagerMessages.Al
 import static org.apache.flink.runtime.testingUtils.TestingJobManagerMessages.JobStatusIs;
 import static org.apache.flink.runtime.testingUtils.TestingJobManagerMessages.NotifyWhenAtLeastNumTaskManagerAreRegistered;
 import static org.apache.flink.runtime.testingUtils.TestingUtils.DEFAULT_AKKA_ASK_TIMEOUT;
-import static org.apache.flink.runtime.testingUtils.TestingUtils.TESTING_TIMEOUT;
 import static org.apache.flink.runtime.testingUtils.TestingUtils.startTestingCluster;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -921,7 +920,7 @@ public class JobManagerTest extends TestLogger {
 			assertEquals(true, savepointFile.exists());
 		} finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (archiver != null) {
@@ -934,10 +933,6 @@ public class JobManagerTest extends TestLogger {
 
 			if (taskManager != null) {
 				taskManager.actor().tell(PoisonPill.getInstance(), ActorRef.noSender());
-			}
-
-			if (actorSystem != null) {
-				actorSystem.awaitTermination(TESTING_TIMEOUT());
 			}
 		}
 	}
@@ -1035,7 +1030,7 @@ public class JobManagerTest extends TestLogger {
 			}
 		} finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (archiver != null) {
@@ -1145,7 +1140,7 @@ public class JobManagerTest extends TestLogger {
 			assertEquals(1, targetDirectory.listFiles().length);
 		} finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (archiver != null) {
@@ -1158,10 +1153,6 @@ public class JobManagerTest extends TestLogger {
 
 			if (taskManager != null) {
 				taskManager.actor().tell(PoisonPill.getInstance(), ActorRef.noSender());
-			}
-
-			if (actorSystem != null) {
-				actorSystem.awaitTermination(TestingUtils.TESTING_TIMEOUT());
 			}
 		}
 	}
@@ -1314,7 +1305,7 @@ public class JobManagerTest extends TestLogger {
 			assertTrue("Unexpected response: " + response, response instanceof JobManagerMessages.JobSubmitSuccess);
 		} finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (archiver != null) {
@@ -1327,10 +1318,6 @@ public class JobManagerTest extends TestLogger {
 
 			if (taskManager != null) {
 				taskManager.actor().tell(PoisonPill.getInstance(), ActorRef.noSender());
-			}
-
-			if (actorSystem != null) {
-				actorSystem.awaitTermination(TestingUtils.TESTING_TIMEOUT());
 			}
 		}
 	}
@@ -1415,8 +1402,7 @@ public class JobManagerTest extends TestLogger {
 
 		} finally {
 			// cleanup the actor system and with it all of the started actors if not already terminated
-			actorSystem.shutdown();
-			actorSystem.awaitTermination();
+			actorSystem.terminate();
 		}
 	}
 }

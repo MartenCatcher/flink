@@ -31,8 +31,6 @@ import org.junit.Test;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-import scala.concurrent.duration.FiniteDuration;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -58,15 +56,11 @@ public class RpcEndpointTest extends TestLogger {
 		}
 
 		if (actorSystem != null) {
-			actorSystem.shutdown();
+			actorSystem.terminate();
 		}
 
 		if (rpcService != null) {
 			rpcService.getTerminationFuture().get(TIMEOUT.toMilliseconds(), TimeUnit.MILLISECONDS);
-		}
-
-		if (actorSystem != null) {
-			actorSystem.awaitTermination(new FiniteDuration(TIMEOUT.toMilliseconds(), TimeUnit.MILLISECONDS));
 		}
 	}
 

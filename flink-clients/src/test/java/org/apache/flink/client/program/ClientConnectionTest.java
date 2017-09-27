@@ -151,7 +151,7 @@ public class ClientConnectionTest extends TestLogger {
 				TestingUtils.stopActorGracefully(actorRef);
 			}
 
-			actorSystem.shutdown();
+			actorSystem.terminate();
 		}
 	}
 }

@@ -19,11 +19,10 @@
 package org.apache.flink.runtime.jobmanager
 
 import java.io.IOException
-import java.net.{InetAddress, InetSocketAddress}
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.{AtomicBoolean, AtomicReference}
 
-import org.apache.flink.configuration.{AkkaOptions, ConfigConstants, Configuration}
+import org.apache.flink.configuration.{AkkaOptions, Configuration}
 import org.apache.flink.runtime.akka.AkkaUtils
 import org.apache.flink.util.NetUtils
 import org.junit.Assert._
@@ -77,7 +76,7 @@ class JobManagerConnectionTest {
         fail(e.getMessage)
     }
     finally {
-      actorSystem.shutdown()
+      actorSystem.terminate()
     }
   }
 
@@ -116,7 +115,7 @@ class JobManagerConnectionTest {
         fail(e.getMessage)
     }
     finally {
-      actorSystem.shutdown()
+      actorSystem.terminate()
     }
   }
 

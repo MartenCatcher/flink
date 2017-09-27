@@ -74,7 +74,7 @@ public class AkkaKvStateLocationLookupServiceTest extends TestLogger {
 	@AfterClass
 	public static void tearDown() throws Exception {
 		if (testActorSystem != null) {
-			testActorSystem.shutdown();
+			testActorSystem.terminate();
 		}
 	}
 

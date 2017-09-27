@@ -75,7 +75,7 @@ public abstract class NonHAAbstractQueryableStateITCase extends AbstractQueryabl
 		}
 
 		if (testActorSystem != null) {
-			testActorSystem.shutdown();
+			testActorSystem.terminate();
 		}
 	}
 }

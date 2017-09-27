@@ -200,8 +200,7 @@ public abstract class ClusterClient {
 
 		public void shutdown() {
 			if (isLoaded()) {
-				actorSystem.shutdown();
-				actorSystem.awaitTermination();
+				actorSystem.terminate();
 				actorSystem = null;
 			}
 		}

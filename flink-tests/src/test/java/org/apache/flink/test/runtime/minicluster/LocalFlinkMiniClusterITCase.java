@@ -112,7 +112,7 @@ public class LocalFlinkMiniClusterITCase extends TestLogger {
 			}
 
 			JavaTestKit.shutdownActorSystem(system);
-			system.awaitTermination();
+			system.terminate();
 		}
 
 		// shut down the global execution context, to make sure it does not affect this testing

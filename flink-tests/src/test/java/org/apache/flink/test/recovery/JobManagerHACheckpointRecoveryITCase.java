@@ -320,11 +320,11 @@ public class JobManagerHACheckpointRecoveryITCase extends TestLogger {
 			}
 
 			if (taskManagerSystem != null) {
-				taskManagerSystem.shutdown();
+				taskManagerSystem.terminate();
 			}
 
 			if (testActorSystem != null) {
-				testActorSystem.shutdown();
+				testActorSystem.terminate();
 			}
 
 			highAvailabilityServices.closeAndCleanupAllData();
@@ -422,8 +422,7 @@ public class JobManagerHACheckpointRecoveryITCase extends TestLogger {
 				miniCluster.awaitTermination();
 			}
 
-			system.shutdown();
-			system.awaitTermination();
+			system.terminate();
 
 			testingServer.stop();
 			testingServer.close();

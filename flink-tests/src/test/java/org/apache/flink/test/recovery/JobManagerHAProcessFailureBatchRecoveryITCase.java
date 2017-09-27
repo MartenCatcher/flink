@@ -379,7 +379,7 @@ public class JobManagerHAProcessFailureBatchRecoveryITCase extends TestLogger {
 		finally {
 			for (int i = 0; i < numberOfTaskManagers; i++) {
 				if (tmActorSystem[i] != null) {
-					tmActorSystem[i].shutdown();
+					tmActorSystem[i].terminate();
 				}
 			}
 

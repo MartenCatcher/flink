@@ -21,7 +21,6 @@ package org.apache.flink.runtime.webmonitor.retriever.impl;
 import org.apache.flink.api.common.time.Time;
 import org.apache.flink.runtime.akka.AkkaUtils;
 import org.apache.flink.runtime.client.JobClientActorTest;
-import org.apache.flink.runtime.concurrent.FutureUtils;
 import org.apache.flink.runtime.jobmaster.JobManagerGateway;
 import org.apache.flink.runtime.leaderelection.TestingLeaderRetrievalService;
 import org.apache.flink.runtime.testingUtils.TestingUtils;
@@ -57,8 +56,7 @@ public class AkkaJobManagerRetrieverTest extends TestLogger {
 	@AfterClass
 	public static void teardown() {
 		if (actorSystem != null) {
-			actorSystem.shutdown();
-			actorSystem.awaitTermination(FutureUtils.toFiniteDuration(timeout));
+			actorSystem.terminate();
 
 			actorSystem = null;
 		}

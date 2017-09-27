@@ -86,8 +86,7 @@ public abstract class HAAbstractQueryableStateITCase extends AbstractQueryableSt
 			cluster.awaitTermination();
 		}
 
-		testActorSystem.shutdown();
-		testActorSystem.awaitTermination();
+		testActorSystem.terminate();
 
 		try {
 			zkServer.stop();

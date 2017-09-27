@@ -18,13 +18,11 @@
 
 package org.apache.flink.runtime.util;
 
+import static org.apache.flink.util.Preconditions.checkNotNull;
+
 import akka.actor.ActorSystem;
 import org.slf4j.Logger;
 import scala.concurrent.duration.Duration;
-
-import java.util.concurrent.TimeoutException;
-
-import static org.apache.flink.util.Preconditions.checkNotNull;
 
 /**
  * JVM shut down thread awaiting actor system shut down for a certain amount
@@ -67,13 +65,9 @@ public class ProcessShutDownThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			actorSystem.awaitTermination(terminationTimeout);
+			actorSystem.terminate();
 		} catch (Exception e) {
-			if (e instanceof TimeoutException) {
-				log.error("Actor system shut down timed out.", e);
-			} else {
-				log.error("Failure during actor system shut down.", e);
-			}
+			log.error("Failure during actor system shut down.", e);
 		} finally {
 			log.info("Shutdown completed. Stopping JVM.");
 			System.exit(0);

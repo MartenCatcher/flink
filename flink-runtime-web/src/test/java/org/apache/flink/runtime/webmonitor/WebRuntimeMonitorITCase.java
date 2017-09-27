@@ -253,7 +253,7 @@ public class WebRuntimeMonitorITCase extends TestLogger {
 				assertTrue(response.getLocation().contains(String.valueOf(leadingWebMonitor.getServerPort())));
 
 				// Kill the leader
-				leadingSystem.shutdown();
+				leadingSystem.terminate();
 
 				// Wait for the notification of the follower
 				waitForLeaderNotification(jobManager[followerIndex].path().toString(), followerRetriever, deadline);
@@ -281,7 +281,7 @@ public class WebRuntimeMonitorITCase extends TestLogger {
 		finally {
 			for (ActorSystem system : jobManagerSystem) {
 				if (system != null) {
-					system.shutdown();
+					system.terminate();
 				}
 			}
 
@@ -341,7 +341,7 @@ public class WebRuntimeMonitorITCase extends TestLogger {
 		}
 		finally {
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 
 			if (webRuntimeMonitor != null) {

@@ -310,11 +310,9 @@ public class AkkaRpcService implements RpcService {
 
 			stopped = true;
 
-			actorSystem.shutdown();
+			actorSystem.terminate();
 			actors.clear();
 		}
-
-		actorSystem.awaitTermination();
 
 		LOG.info("Stopped Akka RPC service.");
 	}
@@ -322,7 +320,7 @@ public class AkkaRpcService implements RpcService {
 	@Override
 	public CompletableFuture<Void> getTerminationFuture() {
 		return CompletableFuture.runAsync(
-			actorSystem::awaitTermination,
+			actorSystem::terminate,
 			getExecutor());
 	}
 

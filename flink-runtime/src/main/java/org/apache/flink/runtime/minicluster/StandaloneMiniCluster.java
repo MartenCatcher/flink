@@ -129,8 +129,7 @@ public class StandaloneMiniCluster {
 	public void close() throws Exception {
 		Exception exception = null;
 
-		actorSystem.shutdown();
-		actorSystem.awaitTermination();
+		actorSystem.terminate();
 
 		try {
 			highAvailabilityServices.closeAndCleanupAllData();

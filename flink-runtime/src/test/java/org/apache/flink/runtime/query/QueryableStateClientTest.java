@@ -77,7 +77,7 @@ public class QueryableStateClientTest {
 	@AfterClass
 	public static void tearDown() throws Exception {
 		if (testActorSystem != null) {
-			testActorSystem.shutdown();
+			testActorSystem.terminate();
 		}
 	}
 

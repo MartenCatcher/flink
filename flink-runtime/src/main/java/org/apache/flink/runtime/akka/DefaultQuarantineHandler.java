@@ -64,12 +64,9 @@ public class DefaultQuarantineHandler implements QuarantineHandler {
 	}
 
 	private void shutdownActorSystem(ActorSystem actorSystem) {
-		// shut the actor system down
-		actorSystem.shutdown();
-
 		try {
-			// give it some time to complete the shutdown
-			actorSystem.awaitTermination(timeout);
+			// shut the actor system down
+			actorSystem.terminate();
 		} finally {
 			// now let's crash the JVM
 			System.exit(exitCode);

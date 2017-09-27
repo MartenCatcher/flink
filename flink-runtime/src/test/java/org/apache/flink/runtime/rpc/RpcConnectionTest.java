@@ -78,7 +78,7 @@ public class RpcConnectionTest {
 				rpcService.stopService();
 			}
 			if (actorSystem != null) {
-				actorSystem.shutdown();
+				actorSystem.terminate();
 			}
 		}
 	}

@@ -176,7 +176,7 @@ public class TaskManagerFailureRecoveryITCase extends TestLogger {
 		}
 		finally {
 			if (additionalSystem != null) {
-				additionalSystem.shutdown();
+				additionalSystem.terminate();
 			}
 			if (cluster != null) {
 				cluster.stop();

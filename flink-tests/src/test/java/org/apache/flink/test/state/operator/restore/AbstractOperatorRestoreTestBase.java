@@ -152,7 +152,7 @@ public abstract class AbstractOperatorRestoreTestBase extends TestLogger {
 		}
 
 		if (actorSystem != null) {
-			actorSystem.shutdown();
+			actorSystem.terminate();
 		}
 
 		if (archiver != null) {

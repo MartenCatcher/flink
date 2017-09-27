@@ -58,8 +58,7 @@ public class AkkaRpcActorTest extends TestLogger {
 	@AfterClass
 	public static void shutdown() {
 		akkaRpcService.stopService();
-		actorSystem.shutdown();
-		actorSystem.awaitTermination();
+		actorSystem.terminate();
 	}
 
 	/**
